@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader @drow-rect="drowRect" />
+    <TheHeader @draw-rect="drawRect" @draw-curve="drawCurve" />
     <BlockCanvas ref="canvas" />
   </div>
 </template>
@@ -12,8 +12,11 @@ import BlockCanvas from './components/BlockCanvas.vue'
 export default {
   components: { TheHeader, BlockCanvas },
   methods: {
-    drowRect() {
-      this.$refs.canvas.drowRect()
+    drawRect({ x, y, w, h }) {
+      this.$refs.canvas.drawRect({ x, y, w, h })
+    },
+    drawCurve({ cpx, cpy, x, y }) {
+      this.$refs.canvas.drawCurve({ cpx, cpy, x, y })
     }
   }
 }

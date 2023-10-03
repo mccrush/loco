@@ -1,16 +1,25 @@
 <template>
   <div class="header">
-    <button @click="drowRect">Rect</button>
+    <BtnDraw @click="drawRect(50, 50, 50, 50)" title="Rect 50 50" />
+    <BtnDraw @click="drawRect(150, 150, 50, 50)" title="Rect 150 150" />
+    <BtnDraw @click="drawCurve(125, 175, 150, 175)" title="Line" />
   </div>
 </template>
 
 <script>
+import BtnDraw from './BtnDraw.vue'
+
 export default {
-  emits: ['drow-rect'],
+  components: { BtnDraw },
+  emits: ['draw-rect', 'draw-curve'],
   methods: {
-    drowRect() {
-      console.log('Select drowRect')
-      this.$emit('drow-rect')
+    drawRect(x, y, w, h) {
+      console.log('Select drawRect')
+      this.$emit('draw-rect', { x, y, w, h })
+    },
+    drawCurve(cpx, cpy, x, y) {
+      console.log('Select drawCurve')
+      this.$emit('draw-curve', { cpx, cpy, x, y })
     }
   }
 }
@@ -19,7 +28,7 @@ export default {
 <style scoped>
 .header {
   height: 64px;
-  padding: 8px 16px;
+  padding: 16px 16px;
   box-shadow: 0 1px 8px 0 #f2f2f2;
 }
 </style>
