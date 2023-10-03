@@ -5,9 +5,12 @@
 <script>
 export default {
   methods: {
-    drowInit() {},
+    drowInit() {
+      console.log('init Drow')
+    },
     drowRect() {
       console.log('drowRect in canvas')
+      this.drowInit()
     }
   }
 }
