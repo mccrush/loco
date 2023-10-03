@@ -1,0 +1,24 @@
+{
+  "name": "loco",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "jsxBracketSameLine": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none"
+  }
+}
