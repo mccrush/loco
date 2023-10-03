@@ -15,8 +15,8 @@ export default {
     drawRect({ x, y, w, h }) {
       this.$refs.canvas.drawRect({ x, y, w, h })
     },
-    drawCurve({ cpx, cpy, x, y }) {
-      this.$refs.canvas.drawCurve({ cpx, cpy, x, y })
+    drawCurve({ cp1x, cp1y, cp2x, cp2y, x, y }) {
+      this.$refs.canvas.drawCurve({ cp1x, cp1y, cp2x, cp2y, x, y })
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="header">
     <BtnDraw @click="drawRect(50, 50, 50, 50)" title="Rect 50 50" />
     <BtnDraw @click="drawRect(150, 150, 50, 50)" title="Rect 150 150" />
-    <BtnDraw @click="drawCurve(125, 175, 150, 175)" title="Line" />
+    <BtnDraw @click="drawCurve(150, 75, 100, 175, 150, 175)" title="Line" />
   </div>
 </template>
 
@@ -17,9 +17,9 @@ export default {
       console.log('Select drawRect')
       this.$emit('draw-rect', { x, y, w, h })
     },
-    drawCurve(cpx, cpy, x, y) {
+    drawCurve(cp1x, cp1y, cp2x, cp2y, x, y) {
       console.log('Select drawCurve')
-      this.$emit('draw-curve', { cpx, cpy, x, y })
+      this.$emit('draw-curve', { cp1x, cp1y, cp2x, cp2y, x, y })
     }
   }
 }
