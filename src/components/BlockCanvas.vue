@@ -1,12 +1,17 @@
 <template>
-  <canvas width="600" height="420" id="canvas"> Drow </canvas>
+  <canvas width="600" height="420" id="canvas" @click="drawFromMouse($event)">
+    Drow
+  </canvas>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      ctx: null
+      ctx: null,
+      width: 50,
+      height: 50,
+      arrayFigurs: []
     }
   },
   methods: {
@@ -15,8 +20,6 @@ export default {
       let canvas = document.getElementById('canvas')
       if (canvas.getContext) {
         this.ctx = canvas.getContext('2d')
-        //ctx.transform(1, 0, 0, -1, 0, canvas.height)
-        //return ctx
       }
     },
     drawRect({ x, y, w, h }) {
@@ -25,16 +28,27 @@ export default {
         this.drawInit()
       }
       this.ctx.strokeRect(x, y, w, h)
+
+      this.arrayFigurs.push({ x, y })
+      localStorage.setItem('arrayFigurs', JSON.stringify(this.arrayFigurs))
+      console.log('LS arrayFigurs = ', localStorage.getItem('arrayFigurs'))
     },
-    drawCurve({ cp1x, cp1y, cp2x, cp2y, x, y }) {
+    drawCurve({ cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2 }) {
       console.log('drawCurve in canvas')
       if (!this.ctx) {
         this.drawInit()
       }
       this.ctx.beginPath()
-      this.ctx.moveTo(100, 75)
-      this.ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+      this.ctx.moveTo(x1, y1)
+      this.ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x2, y2)
       this.ctx.stroke()
+    },
+    drawFromMouse(e) {
+      const X = e.clientX
+      const Y = e.clientY
+      const startX = X - this.width / 2
+      const starty = Y - this.height * 2
+      this.drawRect({ x: startX, y: starty, w: this.width, h: this.height })
     }
   }
 }
