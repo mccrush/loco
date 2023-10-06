@@ -8,6 +8,7 @@
 export default {
   data() {
     return {
+      canvas: null,
       ctx: null,
       width: 50,
       height: 50,
@@ -17,9 +18,9 @@ export default {
   methods: {
     drawInit() {
       console.log('init Draw')
-      let canvas = document.getElementById('canvas')
-      if (canvas.getContext) {
-        this.ctx = canvas.getContext('2d')
+      this.canvas = document.getElementById('canvas')
+      if (this.canvas.getContext) {
+        this.ctx = this.canvas.getContext('2d')
       }
     },
     drawRect({ x, y, w, h }) {
@@ -49,6 +50,15 @@ export default {
       const startX = X - this.width / 2
       const starty = Y - this.height * 2
       this.drawRect({ x: startX, y: starty, w: this.width, h: this.height })
+    },
+    drawClear() {
+      console.log('drawClear in canvas')
+      if (!this.ctx) {
+        this.drawInit()
+      }
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+      this.arrayFigurs = []
+      localStorage.setItem('arrayFigurs', JSON.stringify(this.arrayFigurs))
     }
   }
 }

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <TheHeader @draw-rect="drawRect" @draw-curve="drawCurve" />
+    <TheHeader
+      @draw-rect="drawRect"
+      @draw-curve="drawCurve"
+      @draw-clear="drawClear"
+    />
     <BlockCanvas ref="canvas" />
   </div>
 </template>
@@ -17,6 +21,9 @@ export default {
     },
     drawCurve({ cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2 }) {
       this.$refs.canvas.drawCurve({ cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2 })
+    },
+    drawClear() {
+      this.$refs.canvas.drawClear()
     }
   }
 }
